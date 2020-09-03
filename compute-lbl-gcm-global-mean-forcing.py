@@ -26,9 +26,12 @@ def open_one_file_set(info, vars):
     else:
         loc_tmpl   = info["location"] + "/"
     fname_tmpl = '{}' + '_Efx_{}_rad-irf_{}_gn.nc'.format(name, member)
+    print("Opening " + name)
     x = xr.open_mfdataset([loc_tmpl.format(v) + fname_tmpl.format(v) for v in vars], combine='by_coords')
     return(x)
-
+#
+# Using intake would also have been sensible. 
+#
 def construct_ds_from_dict(info, expt_labels, vars = ["rld", "rlu"]):
     ''' Contruct an xarray Dataset with global-mean up- and down fluxes for each realization and each experiement.
     Mean fluxes are supplemented with net fluxes, absorption, and forcing
@@ -259,8 +262,7 @@ if __name__ == '__main__':
     for x in sw_info: x.update({"realization":construct_realization(x)})
     #
     # GCM contributions
-    #
-    gcm_info = [{'name':'GFDL-AM4',
+    gcm_info = [{'name':'GFDL-CM4',
                  'version':'v20180701',
                  'institution':'NOAA-GFDL',
                  'location':'https://esgdata.gfdl.noaa.gov/thredds/dodsC/gfdl_dataroot4',
@@ -283,6 +285,12 @@ if __name__ == '__main__':
                     'version':'v20191007',
                     'institution':'RTE-RRTMGP-Consortium',
                     'location':'https://esgf3.dkrz.de/thredds/dodsC/cmip6',
+                    'physics':1,
+                    'forcing':1}])
+    gcm_info.extend([{'name':'CanESM5',
+                    'version':'v20200402', # Needs updating after publishing on the ESGF
+                    'institution':'CCCma',
+                    'location':'/Users/robert/Dropbox/Scientific/Projects/RFMIP/RFMIP-IRF/CanESM5',
                     'physics':1,
                     'forcing':1}])
     gcm_info.extend([{'name':'MIROC6',
@@ -311,7 +319,7 @@ if __name__ == '__main__':
     expt_labels = [s.replace("Pre-industrial (PI) greenhouse gas concentrations", "PI") for s in expt_labels]
     expt_labels = [s.replace('"future"', "future") for s in expt_labels]
     ########################################################################
-    if True:
+    if False:
         lw = construct_ds_from_dict(lw_info, expt_labels, vars=["rld", "rlu"])
         print("Longwave realizations")
         for r in lw.realization.values: print("  " + r)
@@ -319,7 +327,7 @@ if __name__ == '__main__':
         lw.close()
         print("Wrote longwave summary")
 
-    if True:
+    if False:
         sw = construct_ds_from_dict(sw_info, expt_labels, vars=["rsd", "rsu"])
         print("Shortwave realizations")
         for r in sw.realization.values: print("  " + r)
