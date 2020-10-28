@@ -30,7 +30,7 @@ def open_one_file_set(info, vars):
     x = xr.open_mfdataset([loc_tmpl.format(v) + fname_tmpl.format(v) for v in vars], combine='by_coords')
     return(x)
 #
-# Using intake would also have been sensible. 
+# Using intake would also have been sensible.
 #
 def construct_ds_from_dict(info, expt_labels, vars = ["rld", "rlu"]):
     ''' Contruct an xarray Dataset with global-mean up- and down fluxes for each realization and each experiement.
@@ -268,7 +268,6 @@ if __name__ == '__main__':
                  'location':'https://esgdata.gfdl.noaa.gov/thredds/dodsC/gfdl_dataroot4',
                  'physics':1,
                  'forcing':2}]
-    if True: gcm_info = [] # Because AM4 is missing for now.
     gcm_info.extend([{'name':'HadGEM3-GC31-LL',
                     'version':'v20190605',
                     'institution':'MOHC',
