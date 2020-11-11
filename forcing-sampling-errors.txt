@@ -1,0 +1,11 @@
+!   Frank's report, Figure 9 data file
+! RMS column sampling error statistics in forcing (W/m^2) over
+! 8 flux quantities, 17 perturbations, and 9 latitude bands
+!          SOCRATES reference            RRTMG testing
+! Nsamp    min    mean   stddev       min    mean   stddev
+N    Soc-min Soc-mean Soc-stdv   R-min R-mean R-stdv
+ 25   0.08372 0.09173 0.00547    0.08578 0.09582 0.00681
+ 50   0.04067 0.04619 0.00270    0.04491 0.05036 0.00310
+100   0.02004 0.02241 0.00155    0.02333 0.02628 0.00183
+200   0.01040 0.01140 0.00052    0.01397 0.01549 0.00107
+400   0.00557 0.00609 0.00037    0.00810 0.00940 0.00063

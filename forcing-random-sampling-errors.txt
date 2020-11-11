@@ -1,0 +1,12 @@
+!    Figure 10 (top half) data file for random column samples: (columns 3 and 6 plotted)
+!       Forcing Objective Functions for Initialization Samples
+! RMS column sampling errors for 8 flux quantities, 17 perturbations,
+! and 9 latitude bands.  NumOpt=100, Ncoolsteps=0
+!   Nsamp   SOCRATES reference          RRTMG
+!           min   mean  stddev     min   mean  stddev
+ N    Soc-min Soc-mean Soc-stdv   R-min R-mean R-stdv
+   25   0.5854 1.2370 0.4311   0.5650 1.2086 0.4475
+   50   0.4312 0.6799 0.2225   0.4195 0.6506 0.2258
+  100   0.3172 0.4312 0.0658   0.3103 0.4117 0.0582
+  200   0.1991 0.2906 0.0459   0.1892 0.2771 0.0406
+  400   0.1475 0.2091 0.0312   0.1426 0.1997 0.0274
